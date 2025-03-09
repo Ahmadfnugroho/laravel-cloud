@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\DetailTransaction;
+use App\Observers\DetailTransactionObserver;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,12 +18,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
+    public function boot()
+    {
+        DetailTransaction::observe(DetailTransactionObserver::class);
+    }
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        //
-    }
 }
